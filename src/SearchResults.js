@@ -1,5 +1,5 @@
+import moment from "moment";
 import React from "react";
-
 function SearchResults(props) {
   console.log(props);
   return (
@@ -14,6 +14,7 @@ function SearchResults(props) {
           <th>Room ID</th>
           <th>Check In Date</th>
           <th>Check Out Date</th>
+          <th>Duration</th>
         </tr>
       </thead>
 
@@ -30,6 +31,12 @@ function SearchResults(props) {
               <th>{elem.roomId}</th>
               <th>{elem.checkInDate}</th>
               <th>{elem.checkOutDate}</th>
+              <th>
+                {moment(elem.checkOutDate.split("-")).diff(
+                  moment(elem.checkInDate.split("-")),
+                  "days"
+                )}
+              </th>
             </tr>
           );
         })}
@@ -41,38 +48,42 @@ function SearchResults(props) {
           <th>Madhlamini </th>
           <th> nmadhla@bwa.org</th>
           <th>35 </th>
-          <th> </th>
-          <th> </th>
+          <th>2021-03-23 </th>
+          <th>2021-03-31 </th>
+          <th>{moment([2021, 3, 31]).diff(moment([2020, 3, 23]), "days")}</th>
         </tr>
         <tr>
           <th>7 </th>
           <th> Mr</th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
+          <th>Nyota </th>
+          <th>Shambare </th>
+          <th>nyota@gmail.com </th>
+          <th> 8</th>
+          <th> 2020-02-21</th>
+          <th> 2020-02-23</th>
+          <th>{moment([2020, 2, 23]).diff(moment([2020, 2, 21]), "days")}</th>
         </tr>
         <tr>
           <th> 8</th>
           <th>Miss </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
+          <th>Bekky </th>
+          <th>Eland </th>
+          <th> BEland@ara.co.za</th>
+          <th> 9</th>
+          <th> 2020-07-04</th>
+          <th> 2020-07-05</th>
+          <th>{moment([2020, 7, 5]).diff(moment([2020, 7, 4]), "days")}</th>
         </tr>
         <tr>
           <th> 9</th>
           <th>Dr </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
+          <th>Abel </th>
+          <th>Jack </th>
+          <th>abeljack@outlook.com </th>
+          <th>26 </th>
+          <th>2019-12-25 </th>
+          <th> 2020-01-02</th>
+          <th>{moment([2020, 1, 2]).diff(moment([2019, 12, 25]), "days")}</th>
         </tr>
       </tbody>
     </table>
