@@ -50,7 +50,7 @@ function SearchResults(props) {
           <th>35 </th>
           <th>2021-03-23 </th>
           <th>2021-03-31 </th>
-          <th>{moment([2021, 3, 31]).diff(moment([2020, 3, 23]), "days")}</th>
+          <th>{moment([2021, 2, 31]).diff(moment([2020, 2, 23]), "days")}</th>
         </tr>
         <tr>
           <th>7 </th>
@@ -83,7 +83,7 @@ function SearchResults(props) {
           <th>26 </th>
           <th>2019-12-25 </th>
           <th> 2020-01-02</th>
-          <th>{moment([2020, 1, 2]).diff(moment([2019, 12, 25]), "days")}</th>
+          <th>{moment([2020, 0, 2]).diff(moment([2019, 11, 25]), "days")}</th>
         </tr>
       </tbody>
     </table>
