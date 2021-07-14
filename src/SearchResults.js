@@ -1,9 +1,33 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
+
 function SearchResults(props) {
-  console.log(props);
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  /*Change Row*/
+
+  function changeRow(id) {
+    console.log(selectedRows);
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter(val => val !== id));
+    } else {
+      setSelectedRows(selectedRows.concat(id));
+    }
+  }
+  let blue = "blue";
+  let white = "white";
+  /*Change color*/
+  function changeColor() {
+    let colourArray = ["red", "green", "blue", "purple"];
+    let arrIndex = Math.floor(Math.random() * colourArray.length);
+    console.log(arrIndex);
+
+    //   console.log(arr);
+    setColor(colourArray[arrIndex]);
+  }
+
   return (
-    <table class="table">
+    <table className="table">
       <thead>
         <tr id="headings">
           <th>ID</th>
@@ -20,9 +44,17 @@ function SearchResults(props) {
 
       <tbody>
         {/*JSON FILE BOOKINGS*/}
-        {props.results.map(elem => {
+        {props.results.map((elem, index) => {
           return (
-            <tr>
+            <tr
+              key={index}
+              onClick={() => changeRow(elem.id)}
+              style={
+                selectedRows.includes(elem.id)
+                  ? { backgroundColor: blue }
+                  : { backgroundColor: white }
+              }
+            >
               <th>{elem.id}</th>
               <th>{elem.title}</th>
               <th>{elem.firstName}</th>
@@ -32,59 +64,14 @@ function SearchResults(props) {
               <th>{elem.checkInDate}</th>
               <th>{elem.checkOutDate}</th>
               <th>
-                {moment(elem.checkOutDate.split("-")).diff(
-                  moment(elem.checkInDate.split("-")),
+                {moment(elem.checkOutDate).diff(
+                  moment(elem.checkInDate),
                   "days"
                 )}
               </th>
             </tr>
           );
         })}
-        {/*HARD CODED BOOKINGS*/}
-        <tr>
-          <th> 6</th>
-          <th>Mrs </th>
-          <th>Nonhlahla </th>
-          <th>Madhlamini </th>
-          <th> nmadhla@bwa.org</th>
-          <th>35 </th>
-          <th>2021-03-23 </th>
-          <th>2021-03-31 </th>
-          <th>{moment([2021, 2, 31]).diff(moment([2020, 2, 23]), "days")}</th>
-        </tr>
-        <tr>
-          <th>7 </th>
-          <th> Mr</th>
-          <th>Nyota </th>
-          <th>Shambare </th>
-          <th>nyota@gmail.com </th>
-          <th> 8</th>
-          <th> 2020-02-21</th>
-          <th> 2020-02-23</th>
-          <th>{moment([2020, 2, 23]).diff(moment([2020, 2, 21]), "days")}</th>
-        </tr>
-        <tr>
-          <th> 8</th>
-          <th>Miss </th>
-          <th>Bekky </th>
-          <th>Eland </th>
-          <th> BEland@ara.co.za</th>
-          <th> 9</th>
-          <th> 2020-07-04</th>
-          <th> 2020-07-05</th>
-          <th>{moment([2020, 7, 5]).diff(moment([2020, 7, 4]), "days")}</th>
-        </tr>
-        <tr>
-          <th> 9</th>
-          <th>Dr </th>
-          <th>Abel </th>
-          <th>Jack </th>
-          <th>abeljack@outlook.com </th>
-          <th>26 </th>
-          <th>2019-12-25 </th>
-          <th> 2020-01-02</th>
-          <th>{moment([2020, 0, 2]).diff(moment([2019, 11, 25]), "days")}</th>
-        </tr>
       </tbody>
     </table>
   );
