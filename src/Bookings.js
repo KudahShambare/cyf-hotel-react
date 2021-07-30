@@ -18,7 +18,6 @@ const Bookings = () => {
       });
   }, []);
 
-  //Old Code Below
   const search = searchVal => {
     console.info("TO DO!", searchVal);
   };

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import SearchButton from "./SearchButton";
-/*
-. Create a new function handleSearchInput taking an event parameter. This function should use the setSearchInput function to update the state variable searchInput with what the user typed in the input field. Finally, add a onChange prop to the <input> tag that is set to the function handleSearchInput. Use console.log() to output the value received in the handleSearchInput function.
 
-Hint: Use event.target.value to get the input value.
+/*
+Instructions: Still in the <Search /> component, add a onSubmit handler to the <form> tag. When the form is submitted (try clicking the search button), get the value of the state searchInput and pass it as a parameter to the search prop function that has been provided for you (the search prop is passed from the <Bookings /> component).
+
+Note: Also your submit handler should take an event parameter and add the line event.preventDefault() to prevent the browser to implicitely submit the form).
+
+Test: Look in the console, you should see the text that is typed in the search input field when submitting the form.    
 */
 
-const Search = () => {
+const Search = ({ search }) => {
   const [searchInput, setSearchInput] = useState("");
 
   function handleSearchInput(e) {
     setSearchInput(e.target.value);
     console.log(e.target.value);
+  }
+  function submit(event) {
+    event.preventDefault();
+    search(searchInput);
   }
 
   return (
@@ -21,7 +28,7 @@ const Search = () => {
       </div>
       <div className="row search-wrapper">
         <div className="col">
-          <form className="form-group search-box">
+          <form className="form-group search-box" onSubmit={submit}>
             <label htmlFor="customerName">Customer name</label>
             <div className="search-row">
               <input
