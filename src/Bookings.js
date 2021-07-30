@@ -17,9 +17,19 @@ const Bookings = () => {
         setBookings(data);
       });
   }, []);
+  /*
+Instructions: Still in the <Bookings /> component, implement the search method. It must use the searchVal variable (that you just passed from the <Search /> component) to filter the search results. The filter function should return bookings where firstName or surname match searchVal. Once filtered, use the setBookings function to update the results rendered in <SearchResults />.
 
+Test: Verify that when you enter an existing first name or surname and submit the form, the results are filtered accordingly in the customers table.
+*/
   const search = searchVal => {
-    console.info("TO DO!", searchVal);
+    //console.info("TO DO!", searchVal);
+    let filtered = bookings.filter(elem => {
+      return (
+        elem.firstName.includes(searchVal) || elem.surname.includes(searchVal)
+      );
+    });
+    setBookings(filtered);
   };
 
   return (
