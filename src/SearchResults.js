@@ -1,34 +1,30 @@
 import moment from "moment";
 import React, { useState } from "react";
 
-function SearchResults({ bookings }) {
+function SearchResults(props) {
   const [selectedRows, setSelectedRows] = useState([]);
+
   /*Change Row*/
 
   function changeRow(id) {
     console.log(selectedRows);
     if (selectedRows.includes(id)) {
-      setSelectedRows(selectedRows.filter((val) => val !== id));
+      setSelectedRows(selectedRows.filter(val => val !== id));
     } else {
       setSelectedRows(selectedRows.concat(id));
     }
   }
-
-  /*Change color*/
-
   let blue = "blue";
   let white = "white";
-  let colourArray = [
-    "red",
-    "green",
-    "blue",
-    "purple",
-    "yellow",
-    "gray",
-    "brown",
-    "pink",
-  ];
-  let arrIndex = Math.floor(Math.random() * colourArray.length);
+  /*Change color*/
+  function changeColor() {
+    let colourArray = ["red", "green", "blue", "purple"];
+    let arrIndex = Math.floor(Math.random() * colourArray.length);
+    console.log(arrIndex);
+
+    //   console.log(arr);
+    setColor(colourArray[arrIndex]);
+  }
 
   return (
     <table className="table">
@@ -48,14 +44,14 @@ function SearchResults({ bookings }) {
 
       <tbody>
         {/*JSON FILE BOOKINGS*/}
-        {bookings.map((elem, index) => {
+        {props.results.map((elem, index) => {
           return (
             <tr
               key={index}
               onClick={() => changeRow(elem.id)}
               style={
                 selectedRows.includes(elem.id)
-                  ? { backgroundColor: colourArray[arrIndex] }
+                  ? { backgroundColor: blue }
                   : { backgroundColor: white }
               }
             >
