@@ -4,7 +4,7 @@ import SearchResults from "./SearchResults.js";
 import FakeBookings from "./data/fakeBookings.json";
 
 const Bookings = () => {
-  const [bookings, setBookings] = useState([]); //Replaced fakebookings with []
+  const [bookings, setBookings] = useState([]);
 
   // let apiData = [];
 
@@ -15,9 +15,7 @@ const Bookings = () => {
       })
       .then(data => {
         setBookings(data);
-        //  console.log(apiData);
       });
-    // console.log(apiData);
   }, []);
 
   //Old Code Below
