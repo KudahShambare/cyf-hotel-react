@@ -4,6 +4,7 @@ import CustomerProfile from "./CustomerProfile";
 
 function SearchResults(props) {
   const [selectedRows, setSelectedRows] = useState([]);
+  const [profileId, setProfileId] = useState();
 
   /*
 . This component should be rendered next to the table in the <SearchResults /> component. This component should receive one prop id. When clicking on a "Show profile" button for a given row, the component <CustomerProfile /> should display the text "Customer Profile", where is the id of the selected customer. Initially, the <CustomerProfile /> component doesn't show anything.
@@ -13,10 +14,7 @@ Hint: You need to record the selected customer id after clicking on a "Show prof
 Test: When first showing the page, no customer profile is displayed. When clicking the first "Show profile" button of the table, the text "Customer 1 profile" appears. When clickong the second "Show profile" button of the table, the text "Customer 2 profile" appears instead.
 */
 
-  /*Change Row*/
-
   function changeRow(id) {
-    console.log(selectedRows);
     if (selectedRows.includes(id)) {
       setSelectedRows(selectedRows.filter(val => val !== id));
     } else {
@@ -66,15 +64,15 @@ Test: When first showing the page, no customer profile is displayed. When clicki
                     : { backgroundColor: white }
                 }
               >
-                <th>{elem.id}</th>
-                <th>{elem.title}</th>
-                <th>{elem.firstName}</th>
-                <th>{elem.surname}</th>
-                <th>{elem.email}</th>
-                <th>{elem.roomId}</th>
-                <th>{elem.checkInDate}</th>
-                <th>{elem.checkOutDate}</th>
-                <th>
+                <th className="table-columns">{elem.id}</th>
+                <th className="table-columns">{elem.title}</th>
+                <th className="table-columns">{elem.firstName}</th>
+                <th className="table-columns">{elem.surname}</th>
+                <th className="table-columns">{elem.email}</th>
+                <th className="table-columns">{elem.roomId}</th>
+                <th className="table-columns">{elem.checkInDate}</th>
+                <th className="table-columns">{elem.checkOutDate}</th>
+                <th className="table-columns">
                   {moment(elem.checkOutDate).diff(
                     moment(elem.checkInDate),
                     "days"
@@ -84,7 +82,8 @@ Test: When first showing the page, no customer profile is displayed. When clicki
                   <button
                     id={elem.id}
                     onClick={() => {
-                      console.log(elem.id);
+                      let selectedId = elem.id;
+                      setProfileId(selectedId);
                     }}
                   >
                     Show Profile
@@ -95,7 +94,7 @@ Test: When first showing the page, no customer profile is displayed. When clicki
           })}
         </tbody>
       </table>
-      <CustomerProfile />
+      <CustomerProfile id={profileId} />
     </div>
   );
 }
