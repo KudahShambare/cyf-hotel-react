@@ -7,8 +7,29 @@
   height: 80px;
 }*/
 #logo {
-  background-color: cornflowerblue;
-  height: 20vh;
+  height: 50vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+#card {
+  text-align: center;
+  border: solid black;
+  border-radius: 15% 30%;
+  width: 30vw;
+  height: 80vh;
+  background-color: rgb(35, 129, 236, 0.4);
+}
+.card-img {
+  width: 26vw;
+  height: 40vh;
+  padding-top: 10%;
+  border-radius: 25% 35%;
 }
 
 .App-header {
