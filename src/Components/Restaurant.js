@@ -1,13 +1,14 @@
 import React from "react";
+import { useState } from "react/cjs/react.production.min";
 
 const Restaurant = () => {
-  const pizzas = 0;
+  const [orders, setOrders] = useState(0);
   return (
     <div>
       <h3>Restaurant Orders</h3>
       <ul>
         <li>
-          Pizzas: {pizzas} <button className="btn btn-primary">Add</button>
+          Pizzas: {orders} <button className="btn btn-primary">Add</button>
         </li>
       </ul>
     </div>
