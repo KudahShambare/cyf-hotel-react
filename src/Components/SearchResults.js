@@ -1,6 +1,12 @@
 import React from "react";
+import moment from "moment";
 
 const SearchResults = props => {
+  const dateDiff = (start, end) => {
+    const a = moment(start);
+    const b = moment(end);
+    return b.diff(a, "days");
+  };
   return (
     <>
       <table className="table">
@@ -8,14 +14,13 @@ const SearchResults = props => {
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
-
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
             <th scope="col">Room ID</th>
             <th scope="col">Check-in Date</th>
-
             <th scope="col">Check-out Date</th>
+            <th scope="col">Number Of Nights</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +38,7 @@ const SearchResults = props => {
                 <th>{booking.roomId}</th>
                 <th>{booking.checkInDate}</th>
                 <th>{booking.checkOutDate}</th>
+                <th>{dateDiff(booking.checkInDate, booking.checkOutDate)}</th>
               </tr>
             );
           })}
