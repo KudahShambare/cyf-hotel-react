@@ -47,6 +47,10 @@
   padding-top: 20px;
   font-size: large;
 }
+/*Table*/
+#table-row {
+  background-color: rgb(35, 129, 236, 0.4);
+}
 /*Footer*/
 footer {
   background-color: black;
