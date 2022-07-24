@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer(props) {
   return (
-    <footer>
+    <footer id="footer">
       <br />
       <ul>
         {props.array.map((elem, index) => {
