@@ -48,7 +48,10 @@
   font-size: large;
 }
 /*Table*/
-#table-row {
+.selected {
+  background-color: aqua;
+}
+.not-selected {
   background-color: rgb(35, 129, 236, 0.4);
 }
 /*Footer*/

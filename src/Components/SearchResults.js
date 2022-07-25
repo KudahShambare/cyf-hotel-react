@@ -1,12 +1,53 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import moment from "moment";
 
 const SearchResults = props => {
+  const [clickedRows, setClickedRows] = useState({
+    objects: [
+      { id: 0, selected: false },
+
+      { id: 1, selected: false },
+      { id: 2, selected: false },
+      { id: 3, selected: false },
+      { id: 4, selected: false }
+    ]
+  });
+
+  const changeBoolean = val => {
+    if (val.selected) {
+      val.selected = false;
+    } else {
+      val.selected = true;
+    }
+  };
+
+  const changeClass = val => {
+    if (clickedRows.objects[val].selected) {
+      return "selected";
+    } else {
+      return "not-selected";
+    }
+  };
+
+  const changeColor = val => {
+    let arrayCopy = [...clickedRows.objects];
+
+    for (let i = 0; i < arrayCopy.length; i++) {
+      if (arrayCopy[i].id === val) {
+        changeBoolean(arrayCopy[i]);
+      }
+    }
+    console.log(arrayCopy);
+    setClickedRows({ objects: arrayCopy });
+  };
+
+  //Date difference
   const dateDiff = (start, end) => {
     const a = moment(start);
     const b = moment(end);
     return b.diff(a, "days");
   };
+
   return (
     <>
       <table className="table">
@@ -24,11 +65,14 @@ const SearchResults = props => {
           </tr>
         </thead>
         <tbody>
-          {props.results.map(booking => {
+          {props.results.map((booking, index) => {
             return (
               <tr
-                id="table-row"
-                key={booking.id + booking.email + "rjrjrieows"}
+                className={changeClass(index)}
+                key={booking.id}
+                onClick={() => {
+                  changeColor(index);
+                }}
               >
                 <th>{booking.id}</th>
                 <th>{booking.title}</th>
